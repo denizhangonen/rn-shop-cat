@@ -10,7 +10,7 @@ import {
   Platform
 } from "react-native";
 
-import Colors from "../../constants/colors";
+import Card from "../UI/Card";
 
 const ProductItem = props => {
   const TouchableComp = TouchableOpacity;
@@ -18,7 +18,7 @@ const ProductItem = props => {
     TouchableComp = TouchableNativeFeedback;
   }
   return (
-    <View style={styles.product}>
+    <Card style={styles.product}>
       <View style={styles.touchable}>
         <TouchableComp onPress={props.onSelect}>
           <View>
@@ -30,25 +30,16 @@ const ProductItem = props => {
               <Text style={styles.price}>${props.price.toFixed(2)}</Text>
             </View>
 
-            <View style={styles.actions}>
-              {props.children}
-            </View>
+            <View style={styles.actions}>{props.children}</View>
           </View>
         </TouchableComp>
       </View>
-    </View>
+    </Card>
   );
 };
 
 const styles = StyleSheet.create({
   product: {
-    shadowColor: "black",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.26,
-    shadowRadius: 8,
-    elevation: 5,
-    borderRadius: 10,
-    backgroundColor: "white",
     height: 300,
     margin: 20
   },
@@ -68,12 +59,12 @@ const styles = StyleSheet.create({
     height: "100%"
   },
   title: {
-      fontFamily: 'open-sans-bold',
+    fontFamily: "open-sans-bold",
     fontSize: 18,
     marginVertical: 2
   },
   price: {
-    fontFamily: 'open-sans',
+    fontFamily: "open-sans",
     fontSize: 14,
     color: "#888"
   },

@@ -13,11 +13,11 @@ import { Ionicons } from "@expo/vector-icons";
 import Colors from "../../constants/colors";
 
 import CartItem from "./CartItem";
-
+import Card from "../UI/Card";
 const OrderItem = props => {
   const [showDetail, setShowDetail] = useState(false);
   return (
-    <View style={styles.orderItem}>
+    <Card style={styles.orderItem}>
       <View style={styles.summary}>
         <Text style={styles.totalAmount}>${props.amount.toFixed(2)}</Text>
         <Text style={styles.date}>{props.date}</Text>
@@ -41,19 +41,12 @@ const OrderItem = props => {
           ))}
         </View>
       )}
-    </View>
+    </Card>
   );
 };
 
 const styles = StyleSheet.create({
   orderItem: {
-    shadowColor: "black",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.26,
-    shadowRadius: 8,
-    elevation: 5,
-    borderRadius: 10,
-    backgroundColor: "white",
     margin: 20,
     padding: 10,
     alignItems: "center"
