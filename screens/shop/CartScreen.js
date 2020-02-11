@@ -31,7 +31,9 @@ const CartScreen = props => {
       <View style={styles.summary}>
         <Text style={styles.summaryText}>
           Total :{" "}
-          <Text style={styles.amount}>${cartTotalAmount.toFixed(2)}</Text>
+          <Text style={styles.amount}>
+            ${Math.round(cartTotalAmount.toFixed(2) * 100) / 100}
+          </Text>
         </Text>
         <Button
           color={Colors.accent}
@@ -45,13 +47,14 @@ const CartScreen = props => {
       <View>
         <FlatList
           data={cartItems}
-          keyExtractor={(item, index) => item.id}
+          keyExtractor={(item, index) => item.productId}
           renderItem={itemData => {
             return (
               <CartItem
                 title={itemData.item.productTitle}
                 quantity={itemData.item.quantity}
                 amount={itemData.item.sum}
+                deletable
                 onRemove={() => {
                   dispatch(cartActions.removeFromCart(itemData.item.productId));
                 }}
