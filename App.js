@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
+import ReduxThunk from "redux-thunk";
 // import { enableScreens } from "react-native-screens";
 import { AppLoading } from "expo";
 import * as Font from "expo-font";
-import { composeWithDevTools } from "redux-devtools-extension";
+// import { composeWithDevTools } from "redux-devtools-extension";
 
 import productReducer from "./store/reducers/products";
 import cartReducer from "./store/reducers/cart";
@@ -26,7 +27,7 @@ const fetchFonts = () => {
   });
 };
 
-const store = createStore(rootReducer, composeWithDevTools());
+const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 
 export default function App() {
   const [fontLoaded, setFontLoaded] = useState(false);
